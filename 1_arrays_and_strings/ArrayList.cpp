@@ -12,7 +12,7 @@ public:
   void print() {
 
     for (int i = 0; i < length; i++) {
-      std::cout << data[i] << ", "; 
+      std::cout << data[i] << ", ";
     }
     printf("\n%d used out of %d\n\n", length, size);
   }
@@ -46,7 +46,7 @@ private:
 };
 
 int main() {
-  ArrayList <int> arr(10);
+  ArrayList<int> arr(10);
   arr.print();
 
   // fill up to limit
@@ -55,19 +55,17 @@ int main() {
     arr.print();
   }
 
-   
   // fill past limit, so it doubles it's size
   for (int i = 0; i < 10; i++) {
     arr.push(i);
     arr.print();
   }
 
-   
   // fill past limit again, so it soubles size multiple times
   for (int i = 0; i < 100; i++) {
     arr.push(i);
     arr.print();
   }
-  
+
   return 0;
 }
