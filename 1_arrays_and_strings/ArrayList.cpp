@@ -1,16 +1,18 @@
+#include <iostream>
 #include <memory>
 #include <stdio.h>
 
-class ArrayList {
+template <typename T> class ArrayList {
 public:
   ArrayList(int size1) {
     size = size1;
-    data.reset(new int[size]);
+    data.reset(new T[size]);
   }
 
   void print() {
+
     for (int i = 0; i < length; i++) {
-      printf("%d, ", data[i]);
+      std::cout << data[i] << ", "; 
     }
     printf("\n%d used out of %d\n\n", length, size);
   }
@@ -26,11 +28,11 @@ public:
 private:
   int size;
   int length;
-  std::unique_ptr<int[]> data;
+  std::unique_ptr<T[]> data;
 
   void doubleSize() {
     int newSize = size * 2;
-    std::unique_ptr<int[]> newData(new int[newSize]);
+    std::unique_ptr<T[]> newData(new T[newSize]);
 
     for (int i = 0; i < length; i++) {
       newData[i] = data[i];
@@ -44,7 +46,7 @@ private:
 };
 
 int main() {
-  ArrayList arr(10);
+  ArrayList <int> arr(10);
   arr.print();
 
   // fill up to limit
@@ -53,16 +55,19 @@ int main() {
     arr.print();
   }
 
+   
   // fill past limit, so it doubles it's size
   for (int i = 0; i < 10; i++) {
     arr.push(i);
     arr.print();
   }
 
+   
   // fill past limit again, so it soubles size multiple times
   for (int i = 0; i < 100; i++) {
     arr.push(i);
     arr.print();
   }
+  
   return 0;
 }
